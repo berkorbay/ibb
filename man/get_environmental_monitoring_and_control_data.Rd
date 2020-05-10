@@ -13,3 +13,8 @@ get_environmental_monitoring_and_control_data(params = list(limit =
 \description{
 It contains environmental monitoring and control data with 13 parameters, measured in 15-minute periods in 38 pre-determined locations in Istanbul for 2020.
 }
+\examples{
+\dontrun{
+get_environmental_monitoring_and_control_data(params=list(limit=5))
+}
+}

@@ -13,3 +13,8 @@ get_iski_call_center_complaint_stats(params = list(limit =
 \description{
 Contains information on the number of complaints and responses to water outages and responses from all districts and neighborhoods across Istanbul in 2019, from the Istanbul Water and Sewerage Administration (İSKİ) call center.
 }
+\examples{
+\dontrun{
+get_iski_call_center_complaint_stats(params=list(limit=5))
+}
+}

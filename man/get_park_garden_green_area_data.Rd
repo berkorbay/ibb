@@ -13,3 +13,8 @@ get_park_garden_green_area_data(params = list(limit =
 \description{
 Includes the number of parks, number of trees maintained, number of sports grounds, length of sports fields, number of playgrounds, number of trees planted, and type of green areas in Istanbul in 2019.
 }
+\examples{
+\dontrun{
+get_park_garden_green_area_data(params=list(limit=5))
+}
+}

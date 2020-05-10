@@ -1,8 +1,11 @@
-
 #'@title Get ISPARK Locations
 #'@description 
 #'@param params List of parameters
 #'@export
+#'@examples
+#' \dontrun{
+#' get_ispark_locations(params=list(limit=5))
+#' }
 get_ispark_locations <- function(params=list(limit=Sys.getenv("IBB_QUERY_LIMIT"))){
 
   get_data_frame_ibb(resource_id="c3eb0d72-1ce4-4983-a3a8-6b0b4b19fcb9",limit=params$limit)
@@ -11,6 +14,10 @@ get_ispark_locations <- function(params=list(limit=Sys.getenv("IBB_QUERY_LIMIT")
 #'@title WATER OUTAGE COMPLAINTS AND RESPONSE NUMBERS BY DISTRICT IN 2019
 #'@description Contains information on the number of complaints and responses to water outages and responses from all districts and neighborhoods across Istanbul in 2019, from the Istanbul Water and Sewerage Administration (İSKİ) call center.
 #'@param params List of parameters
+#'@examples
+#' \dontrun{
+#' get_iski_call_center_complaint_stats(params=list(limit=5))
+#' }
 #'@export
 get_iski_call_center_complaint_stats <- function(params=list(limit=Sys.getenv("IBB_QUERY_LIMIT"))){
 
@@ -20,6 +27,10 @@ get_iski_call_center_complaint_stats <- function(params=list(limit=Sys.getenv("I
 #'@title Park, Garden and Green Area Data for 2019
 #'@description Includes the number of parks, number of trees maintained, number of sports grounds, length of sports fields, number of playgrounds, number of trees planted, and type of green areas in Istanbul in 2019.
 #'@param params List of parameters
+#'@examples
+#' \dontrun{
+#' get_park_garden_green_area_data(params=list(limit=5))
+#' }
 #'@export
 get_park_garden_green_area_data <- function(params=list(limit=Sys.getenv("IBB_QUERY_LIMIT"))){
   get_data_frame_ibb(resource_id="1d9762dc-b3ea-43f1-a46b-2eb0884d26e1",limit=params$limit)
@@ -28,6 +39,10 @@ get_park_garden_green_area_data <- function(params=list(limit=Sys.getenv("IBB_QU
 #'@title Environmental Monitoring and Control Data Based on Location in 2020
 #'@description It contains environmental monitoring and control data with 13 parameters, measured in 15-minute periods in 38 pre-determined locations in Istanbul for 2020.
 #'@param params List of parameters
+#'@examples
+#' \dontrun{
+#' get_environmental_monitoring_and_control_data(params=list(limit=5))
+#' }
 #'@export
 get_environmental_monitoring_and_control_data <- function(params=list(limit=Sys.getenv("IBB_QUERY_LIMIT"))){
   get_data_frame_ibb(resource_id="54bcaea5-e215-44f2-9319-0d6ae5913661",limit=params$limit)

@@ -13,3 +13,8 @@ get_ispark_locations(params = list(limit =
 \description{
 Get ISPARK Locations
 }
+\examples{
+\dontrun{
+get_ispark_locations(params=list(limit=5))
+}
+}
