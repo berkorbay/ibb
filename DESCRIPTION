@@ -1,0 +1,20 @@
+Package: ibb
+Title: R Wrapper for Istanbul Municipality Open Data Portal
+Version: 0.0.1
+Authors@R: 
+    person(given = "Berk",
+           family = "Orbay",
+           email= "berk.orbay@algopoly.com",
+           role = c("aut", "cre"))
+Description: This package provides easy wrappers for Istanbul Metropolitan Municipality's Open Data Portal (tr. İstanbul Büyükşehir Belediyesi Açık Veri Portalı). You can reach the portal via https://data.ibb.gov.tr/en/.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    jsonlite,
+    httr,
+    xml2,
+    dplyr
+Depends:
+    R (>= 3.4)
+RoxygenNote: 6.1.1
