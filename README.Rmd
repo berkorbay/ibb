@@ -1,0 +1,79 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ibb
+
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/ibb)](https://CRAN.R-project.org/package=ibb)
+[![R build status](https://github.com/emraher/ibb/workflows/R-CMD-check/badge.svg)](https://github.com/emraher/ibb/actions)
+<!-- badges: end -->
+
+The goal of ibb is to access [Istanbul Metropolitan Municipality's Open Data Portal](https://data.ibb.gov.tr/en/).
+
+## Installation
+
+You can install the released version of ibb from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("ibb")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("berkorbay/ibb")
+```
+
+
+## Usage and Examples
+
+### All Data Sources
+
+```{r}
+library(ibb)
+
+# This returns a list of data source names
+(df <- get_all_data_sources())
+
+# This returns detailed information about all data sources.
+# You can use resource_id and package_id from this data in other calls.
+(df <- get_all_detailed_info(verbose = FALSE))
+```
+
+### Information About a Specific Data Source
+
+```{r}
+(df <- get_detailed_info_on_data_source(package_id = "594ca91d-0c71-41da-b50a-c7cd30fab67a",
+                                       get_all_info = FALSE))
+```
+
+
+### Get Data 
+```{r}
+(df <- get_data_frame_ibb(resource_id = "99d1edb6-a889-4e69-be7b-21a3f90101f1"))
+```
+
+### Pre-defined Functions for Data
+
+There are some pre-defined functions for data download. For a full list please see the package help files.
+
+```{r}
+(df <- get_ibb_wifi_daily_data_usage())
+```
+
+## Code of Conduct
+
+Please note that the ibb project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

@@ -7,10 +7,15 @@
 get_detailed_info_on_data_source(package_id, get_all_info = FALSE)
 }
 \arguments{
-\item{package_id}{Package ID taken from the package list.}
+\item{package_id}{Package ID taken from the package list. Run get_all_detailed_info to see the available IDs}
 
 \item{get_all_info}{If TRUE return the whole list, otherwise just return the required result data frame.}
 }
 \description{
 Get Info on a Data Source
+}
+\examples{
+\dontrun{
+get_detailed_info_on_data_source("594ca91d-0c71-41da-b50a-c7cd30fab67a")
+}
 }

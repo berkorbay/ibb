@@ -4,8 +4,10 @@
 \alias{call_data_ibb}
 \title{Fundamental Call Function}
 \usage{
-call_data_ibb(call_phrase = "",
-  root_url = "https://data.ibb.gov.tr/api/3/action/")
+call_data_ibb(
+  call_phrase = "",
+  root_url = "https://data.ibb.gov.tr/api/3/action/"
+)
 }
 \arguments{
 \item{call_phrase}{Suffix of the call url.}

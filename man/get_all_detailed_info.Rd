@@ -4,7 +4,7 @@
 \alias{get_all_detailed_info}
 \title{Get Info on All Data Sources}
 \usage{
-get_all_detailed_info(verbose = TRUE)
+get_all_detailed_info(verbose = FALSE)
 }
 \arguments{
 \item{verbose}{If TRUE, it prints the track of the data being imported.}

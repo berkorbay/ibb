@@ -4,8 +4,9 @@
 \alias{get_ibb_wifi_daily_data_usage}
 \title{ibbWiFi Daily Data Usage}
 \usage{
-get_ibb_wifi_daily_data_usage(params = list(limit =
-  Sys.getenv("IBB_QUERY_LIMIT")))
+get_ibb_wifi_daily_data_usage(
+  params = list(limit = Sys.getenv("IBB_QUERY_LIMIT"))
+)
 }
 \arguments{
 \item{params}{List of parameters}

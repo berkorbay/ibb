@@ -4,8 +4,9 @@
 \alias{get_park_garden_green_area_data}
 \title{Park, Garden and Green Area Data for 2019}
 \usage{
-get_park_garden_green_area_data(params = list(limit =
-  Sys.getenv("IBB_QUERY_LIMIT")))
+get_park_garden_green_area_data(
+  params = list(limit = Sys.getenv("IBB_QUERY_LIMIT"))
+)
 }
 \arguments{
 \item{params}{List of parameters}
@@ -15,6 +16,6 @@ Includes the number of parks, number of trees maintained, number of sports groun
 }
 \examples{
 \dontrun{
-get_park_garden_green_area_data(params=list(limit=5))
+get_park_garden_green_area_data(params = list(limit = 5))
 }
 }

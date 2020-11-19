@@ -4,8 +4,7 @@
 \alias{get_ispark_locations}
 \title{Get ISPARK Locations}
 \usage{
-get_ispark_locations(params = list(limit =
-  Sys.getenv("IBB_QUERY_LIMIT")))
+get_ispark_locations(params = list(limit = Sys.getenv("IBB_QUERY_LIMIT")))
 }
 \arguments{
 \item{params}{List of parameters}
@@ -15,6 +14,6 @@ Get ISPARK Locations
 }
 \examples{
 \dontrun{
-get_ispark_locations(params=list(limit=5))
+get_ispark_locations(params = list(limit = 5))
 }
 }

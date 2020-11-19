@@ -7,7 +7,7 @@
 get_data_frame_ibb(resource_id, limit = "", return_json = FALSE)
 }
 \arguments{
-\item{resource_id}{Resource ID of the wanted data set}
+\item{resource_id}{Resource ID of the wanted data set. Run get_all_detailed_info to see the available IDs}
 
 \item{limit}{Maximum number of records}
 
@@ -15,4 +15,10 @@ get_data_frame_ibb(resource_id, limit = "", return_json = FALSE)
 }
 \description{
 Given a data resource ID, this function returns the data frame.
+}
+\examples{
+\dontrun{
+get_data_frame_ibb("99d1edb6-a889-4e69-be7b-21a3f90101f1")
+}
+
 }
