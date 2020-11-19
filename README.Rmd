@@ -46,10 +46,12 @@ devtools::install_github("berkorbay/ibb")
 library(ibb)
 
 # This returns a list of data source names
+
 (df <- get_all_data_sources())
 
 # This returns detailed information about all data sources.
 # You can use resource_id and package_id from this data in other calls.
+
 (df <- get_all_detailed_info(verbose = FALSE))
 ```
 

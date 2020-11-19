@@ -9,8 +9,6 @@
 status](https://www.r-pkg.org/badges/version/ibb)](https://CRAN.R-project.org/package=ibb)
 [![R build
 status](https://github.com/emraher/ibb/workflows/R-CMD-check/badge.svg)](https://github.com/emraher/ibb/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/emraher/ibb/branch/master/graph/badge.svg)](https://codecov.io/gh/emraher/ibb?branch=master)
 <!-- badges: end -->
 
 The goal of ibb is to access [Istanbul Metropolitan Municipality’s Open
@@ -45,6 +43,7 @@ library(ibb)
 #> with IBB_QUERY_LIMIT. Example use Sys.setenv(IBB_QUERY_LIMIT=10)
 
 # This returns a list of data source names
+
 (df <- get_all_data_sources())
 #> # A tibble: 146 x 1
 #>    value                                                                                
@@ -63,6 +62,7 @@ library(ibb)
 
 # This returns detailed information about all data sources.
 # You can use resource_id and package_id from this data in other calls.
+
 (df <- get_all_detailed_info(verbose = FALSE))
 #> # A tibble: 262 x 23
 #>    resource_id package_id mimetype cache_url mimetype_inner hash  description created
