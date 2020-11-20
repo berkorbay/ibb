@@ -78,12 +78,10 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of ibb from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ibb"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">"ibb"</span>)</span></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"berkorbay/ibb"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install.packages("devtools")</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"berkorbay/ibb"</span>)</span></code></pre></div>
 </div>
 <div id="usage-and-examples" class="section level2">
 <h2 class="hasAnchor">
@@ -91,112 +89,399 @@
 <div id="all-data-sources" class="section level3">
 <h3 class="hasAnchor">
 <a href="#all-data-sources" class="anchor"></a>All Data Sources</h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/berkorbay/ibb">ibb</a></span><span class="op">)</span>
-<span class="co">#&gt; Welcome to ibb package!</span>
-<span class="co">#&gt; This is an unofficial R package for IMM Open Data Portal.</span>
-<span class="co">#&gt; For more information, you can visit https://data.ibb.gov.tr/en/</span>
-<span class="co">#&gt; You can set a global limit on number of returned queries</span>
-<span class="co">#&gt; with IBB_QUERY_LIMIT. Example use Sys.setenv(IBB_QUERY_LIMIT=10)</span>
-
-<span class="co"># This returns a list of data source names</span>
-
-<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_all_data_sources.html">get_all_data_sources</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 146 x 1</span>
-<span class="co">#&gt;    value                                                                                </span>
-<span class="co">#&gt;    &lt;chr&gt;                                                                                </span>
-<span class="co">#&gt;  1 2017-2019-ibb-sehir-tiyatrolari-oynanan-oyun-sayilari                                </span>
-<span class="co">#&gt;  2 2019-yili-ilce-bazinda-susuzluk-sikayet-ve-cevap-sayilari                            </span>
-<span class="co">#&gt;  3 2019-yili-park-bahce-ve-yesil-alan-verileri                                          </span>
-<span class="co">#&gt;  4 2020-yili-lokasyon-bazinda-cevresel-izleme-ve-kontrol-verileri                       </span>
-<span class="co">#&gt;  5 akom-buzlanma-erken-uyari-sistemi-verileri-beus                                      </span>
-<span class="co">#&gt;  6 asilanan-hayvanlar                                                                   </span>
-<span class="co">#&gt;  7 atik-yonetimi-2017-cevre-hizmetleri                                                  </span>
-<span class="co">#&gt;  8 aylara-gore-aktarma-istasyonlarinda-toplanan-karisik-belediye-atik-miktari-web-servi…</span>
-<span class="co">#&gt;  9 belnet-sube-ve-uye-sayisi                                                            </span>
-<span class="co">#&gt; 10 bina-bilgileri-igdas                                                                 </span>
-<span class="co">#&gt; # … with 136 more rows</span>
-
-<span class="co"># This returns detailed information about all data sources.</span>
-<span class="co"># You can use resource_id and package_id from this data in other calls.</span>
-
-<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_all_detailed_info.html">get_all_detailed_info</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 262 x 23</span>
-<span class="co">#&gt;    resource_id package_id mimetype cache_url mimetype_inner hash  description created</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;    &lt;lgl&gt;     &lt;lgl&gt;          &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;  </span>
-<span class="co">#&gt;  1 &lt;NA&gt;        594ca91d-… applica… NA        NA             ""    "İstanbul'… 2020-0…</span>
-<span class="co">#&gt;  2 d8db50c3-7… f19f4b31-… applica… NA        NA             ""    "İstanbul'… 2020-0…</span>
-<span class="co">#&gt;  3 088a5748-8… 23710169-… applica… NA        NA             ""    "İstanbul'… 2020-0…</span>
-<span class="co">#&gt;  4 753a4941-d… 3e76cd75-… applica… NA        NA             ""    "İstanbul'… 2020-0…</span>
-<span class="co">#&gt;  5 c6c1b091-7… e9578e58-… applica… NA        NA             ""    "İGDAŞ tar… 2020-0…</span>
-<span class="co">#&gt;  6 &lt;NA&gt;        7dd8f1b0-… text/ht… NA        NA             ""    "İBB Veter… 2020-0…</span>
-<span class="co">#&gt;  7 &lt;NA&gt;        7dd8f1b0-… applica… NA        NA             ""    "İlgili UR… 2020-0…</span>
-<span class="co">#&gt;  8 02bfe245-5… fbc1ed26-… applica… NA        NA             ""    "Ulaşım Yö… 2020-0…</span>
-<span class="co">#&gt;  9 &lt;NA&gt;        c796bee2-… &lt;NA&gt;     NA        NA             ""    "Ücretsiz … 2020-0…</span>
-<span class="co">#&gt; 10 &lt;NA&gt;        260f49a1-… &lt;NA&gt;     NA        NA             ""    "Bu metot … 2020-0…</span>
-<span class="co">#&gt; # … with 252 more rows, and 15 more variables: url &lt;chr&gt;, format &lt;chr&gt;,</span>
-<span class="co">#&gt; #   cache_last_updated &lt;lgl&gt;, state &lt;chr&gt;, last_modified &lt;chr&gt;, revision_id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   url_type &lt;chr&gt;, position &lt;int&gt;,</span>
-<span class="co">#&gt; #   datastore_contains_all_records_of_source_file &lt;chr&gt;, size &lt;int&gt;,</span>
-<span class="co">#&gt; #   datastore_active &lt;lgl&gt;, id &lt;chr&gt;, resource_type &lt;lgl&gt;, name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   package_name &lt;chr&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(ibb)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; Welcome to ibb package! This is an unofficial R package for Istanbul Metropolitan Municipality Open Data Portal. For more information, you can visit https://data.ibb.gov.tr/en/</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; You can set a global limit on number of returned queries with IBB_QUERY_LIMIT. Example use Sys.setenv(IBB_QUERY_LIMIT=10)</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># This returns a list of data source names</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>(df &lt;-<span class="st"> </span><span class="kw">get_all_data_sources</span>())</span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt;   [1] "2017-2019-ibb-sehir-tiyatrolari-oynanan-oyun-sayilari"                                  </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt;   [2] "2019-yili-ilce-bazinda-susuzluk-sikayet-ve-cevap-sayilari"                              </span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt;   [3] "2019-yili-park-bahce-ve-yesil-alan-verileri"                                            </span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt;   [4] "2020-yili-lokasyon-bazinda-cevresel-izleme-ve-kontrol-verileri"                         </span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt;   [5] "akom-buzlanma-erken-uyari-sistemi-verileri-beus"                                        </span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt;   [6] "asilanan-hayvanlar"                                                                     </span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt;   [7] "atik-yonetimi-2017-cevre-hizmetleri"                                                    </span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt;   [8] "aylara-gore-aktarma-istasyonlarinda-toplanan-karisik-belediye-atik-miktari-web-servisi" </span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt;   [9] "belnet-sube-ve-uye-sayisi"                                                              </span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt;  [10] "bina-bilgileri-igdas"                                                                   </span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt;  [11] "degisken-mesaj-panolarinda-gosterilen-guzergahlar"                                      </span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt;  [12] "degisken-mesaj-panolarinda-gosterilen-yogunluk-verisi"                                  </span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt;  [13] "deniz-isletmeleri-bazinda-arac-hat-ve-iskele-sayisi"                                    </span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt;  [14] "deniz-isletmeleri-bazinda-maksimum-yolculuk-sayisi"                                     </span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt;  [15] "deniz-yuzeyi-kiyi-ve-plajlardan-toplanan-kati-atik-miktari"                             </span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt;  [16] "deprem-farkindalik-ve-guvenli-yasam-egitimi-alan-kisi-sayisi"                           </span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt;  [17] "engelli-merkez-sayilari-ve-basvuru-kriterleri"                                          </span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt;  [18] "gaz-birim-fiyati-ve-miktari"                                                            </span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt;  [19] "gemi-kaynakli-petrol-turevli-atiklarin-susuzlastirilmasiyla-geri-kazanilan-miktar"      </span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt;  [20] "gemilerden-toplanan-atik-miktari-ve-turu"                                               </span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt;  [21] "genc-universiteli-egitim-yardimi"                                                       </span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt;  [22] "gunluk-arac-sayimi"                                                                     </span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt;  [23] "halic-dereagzi-ve-koy-taramasi-yapilan-yerlerden-cikartilan-teressubat-miktari"         </span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt;  [24] "hava-kalitesi-istasyon-bilgileri-web-servisi"                                           </span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt;  [25] "hava-kalitesi-istasyon-olcum-sonuclari-web-servisi"                                     </span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt;  [26] "hayvan-barinaklari-butcesi"                                                             </span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt;  [27] "https-www-istanbulsporenvanteri-com"                                                    </span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt;  [28] "ibb-butce-raporlari"                                                                    </span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt;  [29] "ibb-dava-bilgileri"                                                                     </span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt;  [30] "ibb-enerji-tuketim-raporu"                                                              </span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt;  [31] "ibb-istac-araclarinin-anlik-konum-ve-hiz-bilgileri"                                     </span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt;  [32] "ibb-lokasyon-verileri"                                                                  </span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="co">#&gt;  [33] "ibb-sehir-tiyatrolarinda-sergilen-oyunlar"                                              </span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="co">#&gt;  [34] "ibbwifi-gunluk-veri-kullanimi"                                                          </span></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt;  [35] "ibbwifi-gunluk-yeni-yerli-ve-yabanci-abone-sayilari"                                    </span></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#&gt;  [36] "ibbwifi-ilce-veya-mobil-lokasyona-gore-yeni-abonelik-istatistikleri"                    </span></span>
+<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt;  [37] "ibbwifi-lokasyon-grubuna-gore-veri-kullanimi"                                           </span></span>
+<span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt;  [38] "ibbwifi-lokasyon-kategorisine-gore-veri-kullanimi"                                      </span></span>
+<span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt;  [39] "ibbwifi-lokasyon-kategorisine-gore-yeni-yerli-ve-yabanci-abone-sayilari"                </span></span>
+<span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt;  [40] "ibbwifi-ulkelere-gore-abone-dagilimi"                                                   </span></span>
+<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt;  [41] "ibb-ye-ait-hayvan-barinaklari"                                                          </span></span>
+<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt;  [42] "iett-arac-ozellikleri-web-servisi"                                                      </span></span>
+<span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt;  [43] "iett-duyurular-web-servisi"                                                             </span></span>
+<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt;  [44] "iett-hat-durak-guzergah-web-servisi"                                                    </span></span>
+<span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt;  [45] "iett-ibb360-web-servisi"                                                                </span></span>
+<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt;  [46] "iett-ibb-web-servisi"                                                                   </span></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt;  [47] "iett-planlanan-sefer-saati-web-servisi"                                                 </span></span>
+<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt;  [48] "igdas-calisan-bilgileri"                                                                </span></span>
+<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt;  [49] "ikitelli-gunes-enerjisi-santrali-elektrik-uretim-miktarlari"                            </span></span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="co">#&gt;  [50] "ilce-bazinda-yillara-gore-dogalgaz-tuketim-miktari"                                     </span></span>
+<span id="cb3-58"><a href="#cb3-58"></a><span class="co">#&gt;  [51] "ilcelere-gore-abone-sayilari"                                                           </span></span>
+<span id="cb3-59"><a href="#cb3-59"></a><span class="co">#&gt;  [52] "ilce-ve-sektor-bazinda-birinci-sinif-gayrisihhi-muessese-sayisi"                        </span></span>
+<span id="cb3-60"><a href="#cb3-60"></a><span class="co">#&gt;  [53] "ilce-yil-ve-atik-turu-bazinda-atik-miktari"                                             </span></span>
+<span id="cb3-61"><a href="#cb3-61"></a><span class="co">#&gt;  [54] "isbike-istasyon-durumlari-web-servisi"                                                  </span></span>
+<span id="cb3-62"><a href="#cb3-62"></a><span class="co">#&gt;  [55] "iski-2019-yili-duyurulari"                                                              </span></span>
+<span id="cb3-63"><a href="#cb3-63"></a><span class="co">#&gt;  [56] "iski-ilce-bazli-cagri-sayisi-ve-cozum-orani"                                            </span></span>
+<span id="cb3-64"><a href="#cb3-64"></a><span class="co">#&gt;  [57] "iski-ilce-ve-mahalle-bazli-gelen-ve-cevaplanan-kanal-ariza-sayisi"                      </span></span>
+<span id="cb3-65"><a href="#cb3-65"></a><span class="co">#&gt;  [58] "iski-ilce-ve-mahalle-bazli-gelen-ve-cevaplanan-su-ariza-sayisi"                         </span></span>
+<span id="cb3-66"><a href="#cb3-66"></a><span class="co">#&gt;  [59] "iski-personel-sayisi"                                                                   </span></span>
+<span id="cb3-67"><a href="#cb3-67"></a><span class="co">#&gt;  [60] "ispark-otopark-detay-bilgileri-web-servisi"                                             </span></span>
+<span id="cb3-68"><a href="#cb3-68"></a><span class="co">#&gt;  [61] "ispark-otoparklarina-ait-bilgiler"                                                      </span></span>
+<span id="cb3-69"><a href="#cb3-69"></a><span class="co">#&gt;  [62] "ispark-otopark-listesi-web-servisi"                                                     </span></span>
+<span id="cb3-70"><a href="#cb3-70"></a><span class="co">#&gt;  [63] "is-sagligi-ve-guvenligi-egitimi-alan-ibb-personeli-sayisi"                              </span></span>
+<span id="cb3-71"><a href="#cb3-71"></a><span class="co">#&gt;  [64] "istanbul-ana-arter-yol-agi-koordinatlari"                                               </span></span>
+<span id="cb3-72"><a href="#cb3-72"></a><span class="co">#&gt;  [65] "istanbul-a-verilen-temiz-su-miktarlari"                                                 </span></span>
+<span id="cb3-73"><a href="#cb3-73"></a><span class="co">#&gt;  [66] "istanbul-avrupa-anadolu-park-lokasyonlari"                                              </span></span>
+<span id="cb3-74"><a href="#cb3-74"></a><span class="co">#&gt;  [67] "istanbul-baraj-doluluk-oranlari"                                                        </span></span>
+<span id="cb3-75"><a href="#cb3-75"></a><span class="co">#&gt;  [68] "istanbul-da-son-bir-yilda-gerceklesen-depremler"                                        </span></span>
+<span id="cb3-76"><a href="#cb3-76"></a><span class="co">#&gt;  [69] "istanbul-genel-yesil-alan-bilgiler-2004-2019"                                           </span></span>
+<span id="cb3-77"><a href="#cb3-77"></a><span class="co">#&gt;  [70] "istanbul-gunes-enerji-santralleri-uretim-miktarlari"                                    </span></span>
+<span id="cb3-78"><a href="#cb3-78"></a><span class="co">#&gt;  [71] "istanbulkart-dolum-merkezi-bilgileri"                                                   </span></span>
+<span id="cb3-79"><a href="#cb3-79"></a><span class="co">#&gt;  [72] "istanbul-lojistik-dis-kesit-transit-gecisler-raporu"                                    </span></span>
+<span id="cb3-80"><a href="#cb3-80"></a><span class="co">#&gt;  [73] "istanbul-lojistik-firma-gorusmeleri-saha-arastirmasi-sentez-raporu"                     </span></span>
+<span id="cb3-81"><a href="#cb3-81"></a><span class="co">#&gt;  [74] "istanbul-lojistik-perde-noktalari-trafik-sayim-istatistikleri-sentez-raporu"            </span></span>
+<span id="cb3-82"><a href="#cb3-82"></a><span class="co">#&gt;  [75] "istanbul-odak-noktalari-saha-arastirmasi-sentez-raporu"                                 </span></span>
+<span id="cb3-83"><a href="#cb3-83"></a><span class="co">#&gt;  [76] "istanbul-saglik-kurum-ve-kuruluslari-verisi"                                            </span></span>
+<span id="cb3-84"><a href="#cb3-84"></a><span class="co">#&gt;  [77] "istanbul-ulasim-ana-plani-hanehalki-arastirmasi"                                        </span></span>
+<span id="cb3-85"><a href="#cb3-85"></a><span class="co">#&gt;  [78] "itfai-istatistikler"                                                                    </span></span>
+<span id="cb3-86"><a href="#cb3-86"></a><span class="co">#&gt;  [79] "itfai-istatistikler-yangin"                                                             </span></span>
+<span id="cb3-87"><a href="#cb3-87"></a><span class="co">#&gt;  [80] "itfaiye-istasyonlari-konum-bilgileri"                                                   </span></span>
+<span id="cb3-88"><a href="#cb3-88"></a><span class="co">#&gt;  [81] "izcilik-faaliyetinden-faydalanan-kisi-sayisi"                                           </span></span>
+<span id="cb3-89"><a href="#cb3-89"></a><span class="co">#&gt;  [82] "karayollari-bazinda-arac-ve-hat-sayisi"                                                 </span></span>
+<span id="cb3-90"><a href="#cb3-90"></a><span class="co">#&gt;  [83] "karayollari-bazinda-maksimum-yolculuk-sayisi"                                           </span></span>
+<span id="cb3-91"><a href="#cb3-91"></a><span class="co">#&gt;  [84] "kentsel-donusum-projesi"                                                                </span></span>
+<span id="cb3-92"><a href="#cb3-92"></a><span class="co">#&gt;  [85] "kisirlastirilan-hayvanlar"                                                              </span></span>
+<span id="cb3-93"><a href="#cb3-93"></a><span class="co">#&gt;  [86] "kisla-mucadele-faaliyetleri-kapsaminda-buzlanmayi-onlemek-amaciyla-kullanilan-yontemler"</span></span>
+<span id="cb3-94"><a href="#cb3-94"></a><span class="co">#&gt;  [87] "mevcut-bisiklet-yollari"                                                                </span></span>
+<span id="cb3-95"><a href="#cb3-95"></a><span class="co">#&gt;  [88] "mezarlik-adres-bilgileri"                                                               </span></span>
+<span id="cb3-96"><a href="#cb3-96"></a><span class="co">#&gt;  [89] "mikrociple-kayit-altina-alinan-hayvanlar"                                               </span></span>
+<span id="cb3-97"><a href="#cb3-97"></a><span class="co">#&gt;  [90] "muayene-edilen-hayvanlar"                                                               </span></span>
+<span id="cb3-98"><a href="#cb3-98"></a><span class="co">#&gt;  [91] "muhtarlik-adres-bilgileri"                                                              </span></span>
+<span id="cb3-99"><a href="#cb3-99"></a><span class="co">#&gt;  [92] "musahadeye-alinan-hayvanlar"                                                            </span></span>
+<span id="cb3-100"><a href="#cb3-100"></a><span class="co">#&gt;  [93] "nufus-bilgileri"                                                                        </span></span>
+<span id="cb3-101"><a href="#cb3-101"></a><span class="co">#&gt;  [94] "operasyon-uygulanan-hayvanlar"                                                          </span></span>
+<span id="cb3-102"><a href="#cb3-102"></a><span class="co">#&gt;  [95] "otomatik-meteorolojik-gozlem-istasyonu-verileri"                                        </span></span>
+<span id="cb3-103"><a href="#cb3-103"></a><span class="co">#&gt;  [96] "ozel-konulu-is-sagligi-ve-guvenligi-egitimi-ibb-personeli-sayisi"                       </span></span>
+<span id="cb3-104"><a href="#cb3-104"></a><span class="co">#&gt;  [97] "paylasimli-bisiklet-yollari"                                                            </span></span>
+<span id="cb3-105"><a href="#cb3-105"></a><span class="co">#&gt;  [98] "rayli-sistem-gunluk-maksimum-yolculuk-sayilari"                                         </span></span>
+<span id="cb3-106"><a href="#cb3-106"></a><span class="co">#&gt;  [99] "rayli-sistem-insaat-ilerleme-oranlari"                                                  </span></span>
+<span id="cb3-107"><a href="#cb3-107"></a><span class="co">#&gt; [100] "rayli-sistemler-cekmekoy-sultanbeyli-metro-hatti-bilgileri"                             </span></span>
+<span id="cb3-108"><a href="#cb3-108"></a><span class="co">#&gt; [101] "rayli-sistemler-dudullu-bostanci-metro-hatti-bilgileri"                                 </span></span>
+<span id="cb3-109"><a href="#cb3-109"></a><span class="co">#&gt; [102] "rayli-sistemlere-ait-aktarma-bilgileri"                                                 </span></span>
+<span id="cb3-110"><a href="#cb3-110"></a><span class="co">#&gt; [103] "rayli-sistemlere-ait-hat-uzunluk-bilgileri"                                             </span></span>
+<span id="cb3-111"><a href="#cb3-111"></a><span class="co">#&gt; [104] "rayli-sistemlere-ait-internet-siteleri"                                                 </span></span>
+<span id="cb3-112"><a href="#cb3-112"></a><span class="co">#&gt; [105] "rayli-sistemlere-ait-istasyon-bilgileri"                                                </span></span>
+<span id="cb3-113"><a href="#cb3-113"></a><span class="co">#&gt; [106] "rayli-sistemlere-ait-tamamlanmis-santiye-bilgileri"                                     </span></span>
+<span id="cb3-114"><a href="#cb3-114"></a><span class="co">#&gt; [107] "rayli-sistemler-eminonu-alibeykoy-tramvay-hatti-bilgileri"                              </span></span>
+<span id="cb3-115"><a href="#cb3-115"></a><span class="co">#&gt; [108] "rayli-sistemler-gunluk-aylik-yillik-hat-bazli-sefer-sayilari"                           </span></span>
+<span id="cb3-116"><a href="#cb3-116"></a><span class="co">#&gt; [109] "rayli-sistemler-gunluk-aylik-yillik-vagon-kilometre-bilgileri"                          </span></span>
+<span id="cb3-117"><a href="#cb3-117"></a><span class="co">#&gt; [110] "rayli-sistemler-hastane-yenidogan-metro-hatti-bilgileri"                                </span></span>
+<span id="cb3-118"><a href="#cb3-118"></a><span class="co">#&gt; [111] "rayli-sistemler-hat-bazli-sefer-sayilari"                                               </span></span>
+<span id="cb3-119"><a href="#cb3-119"></a><span class="co">#&gt; [112] "rayli-sistemler-hat-bazli-yolculuk-sayilari"                                            </span></span>
+<span id="cb3-120"><a href="#cb3-120"></a><span class="co">#&gt; [113] "rayli-sistemler-ikitelli-atakoy-metro-hatti-verisi"                                     </span></span>
+<span id="cb3-121"><a href="#cb3-121"></a><span class="co">#&gt; [114] "rayli-sistemler-kabatas-mecidiykoy-mahmutbey-metro-hatti-bilgileri"                     </span></span>
+<span id="cb3-122"><a href="#cb3-122"></a><span class="co">#&gt; [115] "rayli-sistemler-kaynarca-tuzla-metro-hatti-bilgileri"                                   </span></span>
+<span id="cb3-123"><a href="#cb3-123"></a><span class="co">#&gt; [116] "rayli-sistemler-kirazli-halkali-istasyonu-asansor-ve-yuruyen-merdiven-sayisi"           </span></span>
+<span id="cb3-124"><a href="#cb3-124"></a><span class="co">#&gt; [117] "rayli-sistemler-kirazli-halkali-istasyonu-diger-hatlarla-baglanti-noktalari"            </span></span>
+<span id="cb3-125"><a href="#cb3-125"></a><span class="co">#&gt; [118] "rayli-sistemler-kirazli-halkali-metro-hatti-ilce-istasyon-bilgileri"                    </span></span>
+<span id="cb3-126"><a href="#cb3-126"></a><span class="co">#&gt; [119] "rayli-sistemler-m7-kabatas-mecidiyekoy-mahmutbey-metro-hatti-otopark-bilgileri"         </span></span>
+<span id="cb3-127"><a href="#cb3-127"></a><span class="co">#&gt; [120] "rayli-sistemler-maksimum-yolculuk-sayisi"                                               </span></span>
+<span id="cb3-128"><a href="#cb3-128"></a><span class="co">#&gt; [121] "rayli-sistemler-pendik-kaynarca-hastane-metro-hatti-bilgileri"                          </span></span>
+<span id="cb3-129"><a href="#cb3-129"></a><span class="co">#&gt; [122] "rayli-sistemler-rumelihisarustu-asiyan-funikuler-hatti-ilce-istasyon-verisi"            </span></span>
+<span id="cb3-130"><a href="#cb3-130"></a><span class="co">#&gt; [123] "rayli-sistemler-umraniye-atasehir-goztepe-metro-hatti-bilgileri"                        </span></span>
+<span id="cb3-131"><a href="#cb3-131"></a><span class="co">#&gt; [124] "rayli-sistemler-vagon-kilometre-bilgileri"                                              </span></span>
+<span id="cb3-132"><a href="#cb3-132"></a><span class="co">#&gt; [125] "rehabilite-edilip-alindigi-ortama-birakilan-hayvanlar"                                  </span></span>
+<span id="cb3-133"><a href="#cb3-133"></a><span class="co">#&gt; [126] "saatlik-trafik-yogunluk-veri-seti"                                                      </span></span>
+<span id="cb3-134"><a href="#cb3-134"></a><span class="co">#&gt; [127] "sahiplendirilen-hayvanlar"                                                              </span></span>
+<span id="cb3-135"><a href="#cb3-135"></a><span class="co">#&gt; [128] "sefer-gerceklesme-web-servisi"                                                          </span></span>
+<span id="cb3-136"><a href="#cb3-136"></a><span class="co">#&gt; [129] "sokak-hayvanlarina-ayrilan-butce"                                                       </span></span>
+<span id="cb3-137"><a href="#cb3-137"></a><span class="co">#&gt; [130] "sokak-hayvanlarina-verilen-mama-miktari"                                                </span></span>
+<span id="cb3-138"><a href="#cb3-138"></a><span class="co">#&gt; [131] "spor-organizasyonlari-ve-sporcu-sayilari"                                               </span></span>
+<span id="cb3-139"><a href="#cb3-139"></a><span class="co">#&gt; [132] "tedavi-edilen-hayvanlar"                                                                </span></span>
+<span id="cb3-140"><a href="#cb3-140"></a><span class="co">#&gt; [133] "toplu-tasima-bilet-fiyatlari"                                                           </span></span>
+<span id="cb3-141"><a href="#cb3-141"></a><span class="co">#&gt; [134] "toplu-ulasim-arac-dezenfeksiyon-sorgulama-sistemi"                                      </span></span>
+<span id="cb3-142"><a href="#cb3-142"></a><span class="co">#&gt; [135] "trafik-indeks-degeri-web-servisi"                                                       </span></span>
+<span id="cb3-143"><a href="#cb3-143"></a><span class="co">#&gt; [136] "trafik-indeks-raporu"                                                                   </span></span>
+<span id="cb3-144"><a href="#cb3-144"></a><span class="co">#&gt; [137] "trafik-yogunluk-haritasi"                                                               </span></span>
+<span id="cb3-145"><a href="#cb3-145"></a><span class="co">#&gt; [138] "tum-isbike-istasyonlari-web-servisi"                                                    </span></span>
+<span id="cb3-146"><a href="#cb3-146"></a><span class="co">#&gt; [139] "ucretsiz-ibbwifi-hizmeti-sunulan-lokasyonlar"                                           </span></span>
+<span id="cb3-147"><a href="#cb3-147"></a><span class="co">#&gt; [140] "ulasim-yonetim-merkezi-uym-tarafindan-sisteme-girilen-trafik-duyurulari"                </span></span>
+<span id="cb3-148"><a href="#cb3-148"></a><span class="co">#&gt; [141] "veteriner-rehabilitasyon-istatistikleri"                                                </span></span>
+<span id="cb3-149"><a href="#cb3-149"></a><span class="co">#&gt; [142] "yatirim-turu-ve-uzunluk-bilgileri"                                                      </span></span>
+<span id="cb3-150"><a href="#cb3-150"></a><span class="co">#&gt; [143] "yil-bazli-atik-alinan-gemi-sayisi"                                                      </span></span>
+<span id="cb3-151"><a href="#cb3-151"></a><span class="co">#&gt; [144] "yillara-gore-atiktan-geri-kazanim-miktarlari"                                           </span></span>
+<span id="cb3-152"><a href="#cb3-152"></a><span class="co">#&gt; [145] "yillara-gore-kentsel-atik-geri-kazanim-orani"                                           </span></span>
+<span id="cb3-153"><a href="#cb3-153"></a><span class="co">#&gt; [146] "yolculuk-turu-bazinda-yolcu-sayisi"</span></span>
+<span id="cb3-154"><a href="#cb3-154"></a></span>
+<span id="cb3-155"><a href="#cb3-155"></a><span class="co"># This returns detailed information about all data sources.</span></span>
+<span id="cb3-156"><a href="#cb3-156"></a><span class="co"># You can use resource_id and package_id from this data in other calls.</span></span>
+<span id="cb3-157"><a href="#cb3-157"></a></span>
+<span id="cb3-158"><a href="#cb3-158"></a>(df &lt;-<span class="st"> </span><span class="kw">get_all_detailed_info</span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>))</span>
+<span id="cb3-159"><a href="#cb3-159"></a><span class="co">#&gt; [1] "Getting info on: 2017-2019-ibb-sehir-tiyatrolari-oynanan-oyun-sayilari Package 1/146"</span></span>
+<span id="cb3-160"><a href="#cb3-160"></a><span class="co">#&gt; [1] "Getting info on: 2019-yili-ilce-bazinda-susuzluk-sikayet-ve-cevap-sayilari Package 2/146"</span></span>
+<span id="cb3-161"><a href="#cb3-161"></a><span class="co">#&gt; [1] "Getting info on: 2019-yili-park-bahce-ve-yesil-alan-verileri Package 3/146"</span></span>
+<span id="cb3-162"><a href="#cb3-162"></a><span class="co">#&gt; [1] "Getting info on: 2020-yili-lokasyon-bazinda-cevresel-izleme-ve-kontrol-verileri Package 4/146"</span></span>
+<span id="cb3-163"><a href="#cb3-163"></a><span class="co">#&gt; [1] "Getting info on: akom-buzlanma-erken-uyari-sistemi-verileri-beus Package 5/146"</span></span>
+<span id="cb3-164"><a href="#cb3-164"></a><span class="co">#&gt; [1] "Getting info on: asilanan-hayvanlar Package 6/146"</span></span>
+<span id="cb3-165"><a href="#cb3-165"></a><span class="co">#&gt; [1] "Getting info on: atik-yonetimi-2017-cevre-hizmetleri Package 7/146"</span></span>
+<span id="cb3-166"><a href="#cb3-166"></a><span class="co">#&gt; [1] "Getting info on: aylara-gore-aktarma-istasyonlarinda-toplanan-karisik-belediye-atik-miktari-web-servisi Package 8/146"</span></span>
+<span id="cb3-167"><a href="#cb3-167"></a><span class="co">#&gt; [1] "Getting info on: belnet-sube-ve-uye-sayisi Package 9/146"</span></span>
+<span id="cb3-168"><a href="#cb3-168"></a><span class="co">#&gt; [1] "Getting info on: bina-bilgileri-igdas Package 10/146"</span></span>
+<span id="cb3-169"><a href="#cb3-169"></a><span class="co">#&gt; [1] "Getting info on: degisken-mesaj-panolarinda-gosterilen-guzergahlar Package 11/146"</span></span>
+<span id="cb3-170"><a href="#cb3-170"></a><span class="co">#&gt; [1] "Getting info on: degisken-mesaj-panolarinda-gosterilen-yogunluk-verisi Package 12/146"</span></span>
+<span id="cb3-171"><a href="#cb3-171"></a><span class="co">#&gt; [1] "Getting info on: deniz-isletmeleri-bazinda-arac-hat-ve-iskele-sayisi Package 13/146"</span></span>
+<span id="cb3-172"><a href="#cb3-172"></a><span class="co">#&gt; [1] "Getting info on: deniz-isletmeleri-bazinda-maksimum-yolculuk-sayisi Package 14/146"</span></span>
+<span id="cb3-173"><a href="#cb3-173"></a><span class="co">#&gt; [1] "Getting info on: deniz-yuzeyi-kiyi-ve-plajlardan-toplanan-kati-atik-miktari Package 15/146"</span></span>
+<span id="cb3-174"><a href="#cb3-174"></a><span class="co">#&gt; [1] "Getting info on: deprem-farkindalik-ve-guvenli-yasam-egitimi-alan-kisi-sayisi Package 16/146"</span></span>
+<span id="cb3-175"><a href="#cb3-175"></a><span class="co">#&gt; [1] "Getting info on: engelli-merkez-sayilari-ve-basvuru-kriterleri Package 17/146"</span></span>
+<span id="cb3-176"><a href="#cb3-176"></a><span class="co">#&gt; [1] "Getting info on: gaz-birim-fiyati-ve-miktari Package 18/146"</span></span>
+<span id="cb3-177"><a href="#cb3-177"></a><span class="co">#&gt; [1] "Getting info on: gemi-kaynakli-petrol-turevli-atiklarin-susuzlastirilmasiyla-geri-kazanilan-miktar Package 19/146"</span></span>
+<span id="cb3-178"><a href="#cb3-178"></a><span class="co">#&gt; [1] "Getting info on: gemilerden-toplanan-atik-miktari-ve-turu Package 20/146"</span></span>
+<span id="cb3-179"><a href="#cb3-179"></a><span class="co">#&gt; [1] "Getting info on: genc-universiteli-egitim-yardimi Package 21/146"</span></span>
+<span id="cb3-180"><a href="#cb3-180"></a><span class="co">#&gt; [1] "Getting info on: gunluk-arac-sayimi Package 22/146"</span></span>
+<span id="cb3-181"><a href="#cb3-181"></a><span class="co">#&gt; [1] "Getting info on: halic-dereagzi-ve-koy-taramasi-yapilan-yerlerden-cikartilan-teressubat-miktari Package 23/146"</span></span>
+<span id="cb3-182"><a href="#cb3-182"></a><span class="co">#&gt; [1] "Getting info on: hava-kalitesi-istasyon-bilgileri-web-servisi Package 24/146"</span></span>
+<span id="cb3-183"><a href="#cb3-183"></a><span class="co">#&gt; [1] "Getting info on: hava-kalitesi-istasyon-olcum-sonuclari-web-servisi Package 25/146"</span></span>
+<span id="cb3-184"><a href="#cb3-184"></a><span class="co">#&gt; [1] "Getting info on: hayvan-barinaklari-butcesi Package 26/146"</span></span>
+<span id="cb3-185"><a href="#cb3-185"></a><span class="co">#&gt; [1] "Getting info on: https-www-istanbulsporenvanteri-com Package 27/146"</span></span>
+<span id="cb3-186"><a href="#cb3-186"></a><span class="co">#&gt; [1] "Getting info on: ibb-butce-raporlari Package 28/146"</span></span>
+<span id="cb3-187"><a href="#cb3-187"></a><span class="co">#&gt; [1] "Getting info on: ibb-dava-bilgileri Package 29/146"</span></span>
+<span id="cb3-188"><a href="#cb3-188"></a><span class="co">#&gt; [1] "Getting info on: ibb-enerji-tuketim-raporu Package 30/146"</span></span>
+<span id="cb3-189"><a href="#cb3-189"></a><span class="co">#&gt; [1] "Getting info on: ibb-istac-araclarinin-anlik-konum-ve-hiz-bilgileri Package 31/146"</span></span>
+<span id="cb3-190"><a href="#cb3-190"></a><span class="co">#&gt; [1] "Getting info on: ibb-lokasyon-verileri Package 32/146"</span></span>
+<span id="cb3-191"><a href="#cb3-191"></a><span class="co">#&gt; [1] "Getting info on: ibb-sehir-tiyatrolarinda-sergilen-oyunlar Package 33/146"</span></span>
+<span id="cb3-192"><a href="#cb3-192"></a><span class="co">#&gt; [1] "Getting info on: ibbwifi-gunluk-veri-kullanimi Package 34/146"</span></span>
+<span id="cb3-193"><a href="#cb3-193"></a><span class="co">#&gt; [1] "Getting info on: ibbwifi-gunluk-yeni-yerli-ve-yabanci-abone-sayilari Package 35/146"</span></span>
+<span id="cb3-194"><a href="#cb3-194"></a><span class="co">#&gt; [1] "Getting info on: ibbwifi-ilce-veya-mobil-lokasyona-gore-yeni-abonelik-istatistikleri Package 36/146"</span></span>
+<span id="cb3-195"><a href="#cb3-195"></a><span class="co">#&gt; [1] "Getting info on: ibbwifi-lokasyon-grubuna-gore-veri-kullanimi Package 37/146"</span></span>
+<span id="cb3-196"><a href="#cb3-196"></a><span class="co">#&gt; [1] "Getting info on: ibbwifi-lokasyon-kategorisine-gore-veri-kullanimi Package 38/146"</span></span>
+<span id="cb3-197"><a href="#cb3-197"></a><span class="co">#&gt; [1] "Getting info on: ibbwifi-lokasyon-kategorisine-gore-yeni-yerli-ve-yabanci-abone-sayilari Package 39/146"</span></span>
+<span id="cb3-198"><a href="#cb3-198"></a><span class="co">#&gt; [1] "Getting info on: ibbwifi-ulkelere-gore-abone-dagilimi Package 40/146"</span></span>
+<span id="cb3-199"><a href="#cb3-199"></a><span class="co">#&gt; [1] "Getting info on: ibb-ye-ait-hayvan-barinaklari Package 41/146"</span></span>
+<span id="cb3-200"><a href="#cb3-200"></a><span class="co">#&gt; [1] "Getting info on: iett-arac-ozellikleri-web-servisi Package 42/146"</span></span>
+<span id="cb3-201"><a href="#cb3-201"></a><span class="co">#&gt; [1] "Getting info on: iett-duyurular-web-servisi Package 43/146"</span></span>
+<span id="cb3-202"><a href="#cb3-202"></a><span class="co">#&gt; [1] "Getting info on: iett-hat-durak-guzergah-web-servisi Package 44/146"</span></span>
+<span id="cb3-203"><a href="#cb3-203"></a><span class="co">#&gt; [1] "Getting info on: iett-ibb360-web-servisi Package 45/146"</span></span>
+<span id="cb3-204"><a href="#cb3-204"></a><span class="co">#&gt; [1] "Getting info on: iett-ibb-web-servisi Package 46/146"</span></span>
+<span id="cb3-205"><a href="#cb3-205"></a><span class="co">#&gt; [1] "Getting info on: iett-planlanan-sefer-saati-web-servisi Package 47/146"</span></span>
+<span id="cb3-206"><a href="#cb3-206"></a><span class="co">#&gt; [1] "Getting info on: igdas-calisan-bilgileri Package 48/146"</span></span>
+<span id="cb3-207"><a href="#cb3-207"></a><span class="co">#&gt; [1] "Getting info on: ikitelli-gunes-enerjisi-santrali-elektrik-uretim-miktarlari Package 49/146"</span></span>
+<span id="cb3-208"><a href="#cb3-208"></a><span class="co">#&gt; [1] "Getting info on: ilce-bazinda-yillara-gore-dogalgaz-tuketim-miktari Package 50/146"</span></span>
+<span id="cb3-209"><a href="#cb3-209"></a><span class="co">#&gt; [1] "Getting info on: ilcelere-gore-abone-sayilari Package 51/146"</span></span>
+<span id="cb3-210"><a href="#cb3-210"></a><span class="co">#&gt; [1] "Getting info on: ilce-ve-sektor-bazinda-birinci-sinif-gayrisihhi-muessese-sayisi Package 52/146"</span></span>
+<span id="cb3-211"><a href="#cb3-211"></a><span class="co">#&gt; [1] "Getting info on: ilce-yil-ve-atik-turu-bazinda-atik-miktari Package 53/146"</span></span>
+<span id="cb3-212"><a href="#cb3-212"></a><span class="co">#&gt; [1] "Getting info on: isbike-istasyon-durumlari-web-servisi Package 54/146"</span></span>
+<span id="cb3-213"><a href="#cb3-213"></a><span class="co">#&gt; [1] "Getting info on: iski-2019-yili-duyurulari Package 55/146"</span></span>
+<span id="cb3-214"><a href="#cb3-214"></a><span class="co">#&gt; [1] "Getting info on: iski-ilce-bazli-cagri-sayisi-ve-cozum-orani Package 56/146"</span></span>
+<span id="cb3-215"><a href="#cb3-215"></a><span class="co">#&gt; [1] "Getting info on: iski-ilce-ve-mahalle-bazli-gelen-ve-cevaplanan-kanal-ariza-sayisi Package 57/146"</span></span>
+<span id="cb3-216"><a href="#cb3-216"></a><span class="co">#&gt; [1] "Getting info on: iski-ilce-ve-mahalle-bazli-gelen-ve-cevaplanan-su-ariza-sayisi Package 58/146"</span></span>
+<span id="cb3-217"><a href="#cb3-217"></a><span class="co">#&gt; [1] "Getting info on: iski-personel-sayisi Package 59/146"</span></span>
+<span id="cb3-218"><a href="#cb3-218"></a><span class="co">#&gt; [1] "Getting info on: ispark-otopark-detay-bilgileri-web-servisi Package 60/146"</span></span>
+<span id="cb3-219"><a href="#cb3-219"></a><span class="co">#&gt; [1] "Getting info on: ispark-otoparklarina-ait-bilgiler Package 61/146"</span></span>
+<span id="cb3-220"><a href="#cb3-220"></a><span class="co">#&gt; [1] "Getting info on: ispark-otopark-listesi-web-servisi Package 62/146"</span></span>
+<span id="cb3-221"><a href="#cb3-221"></a><span class="co">#&gt; [1] "Getting info on: is-sagligi-ve-guvenligi-egitimi-alan-ibb-personeli-sayisi Package 63/146"</span></span>
+<span id="cb3-222"><a href="#cb3-222"></a><span class="co">#&gt; [1] "Getting info on: istanbul-ana-arter-yol-agi-koordinatlari Package 64/146"</span></span>
+<span id="cb3-223"><a href="#cb3-223"></a><span class="co">#&gt; [1] "Getting info on: istanbul-a-verilen-temiz-su-miktarlari Package 65/146"</span></span>
+<span id="cb3-224"><a href="#cb3-224"></a><span class="co">#&gt; [1] "Getting info on: istanbul-avrupa-anadolu-park-lokasyonlari Package 66/146"</span></span>
+<span id="cb3-225"><a href="#cb3-225"></a><span class="co">#&gt; [1] "Getting info on: istanbul-baraj-doluluk-oranlari Package 67/146"</span></span>
+<span id="cb3-226"><a href="#cb3-226"></a><span class="co">#&gt; [1] "Getting info on: istanbul-da-son-bir-yilda-gerceklesen-depremler Package 68/146"</span></span>
+<span id="cb3-227"><a href="#cb3-227"></a><span class="co">#&gt; [1] "Getting info on: istanbul-genel-yesil-alan-bilgiler-2004-2019 Package 69/146"</span></span>
+<span id="cb3-228"><a href="#cb3-228"></a><span class="co">#&gt; [1] "Getting info on: istanbul-gunes-enerji-santralleri-uretim-miktarlari Package 70/146"</span></span>
+<span id="cb3-229"><a href="#cb3-229"></a><span class="co">#&gt; [1] "Getting info on: istanbulkart-dolum-merkezi-bilgileri Package 71/146"</span></span>
+<span id="cb3-230"><a href="#cb3-230"></a><span class="co">#&gt; [1] "Getting info on: istanbul-lojistik-dis-kesit-transit-gecisler-raporu Package 72/146"</span></span>
+<span id="cb3-231"><a href="#cb3-231"></a><span class="co">#&gt; [1] "Getting info on: istanbul-lojistik-firma-gorusmeleri-saha-arastirmasi-sentez-raporu Package 73/146"</span></span>
+<span id="cb3-232"><a href="#cb3-232"></a><span class="co">#&gt; [1] "Getting info on: istanbul-lojistik-perde-noktalari-trafik-sayim-istatistikleri-sentez-raporu Package 74/146"</span></span>
+<span id="cb3-233"><a href="#cb3-233"></a><span class="co">#&gt; [1] "Getting info on: istanbul-odak-noktalari-saha-arastirmasi-sentez-raporu Package 75/146"</span></span>
+<span id="cb3-234"><a href="#cb3-234"></a><span class="co">#&gt; [1] "Getting info on: istanbul-saglik-kurum-ve-kuruluslari-verisi Package 76/146"</span></span>
+<span id="cb3-235"><a href="#cb3-235"></a><span class="co">#&gt; [1] "Getting info on: istanbul-ulasim-ana-plani-hanehalki-arastirmasi Package 77/146"</span></span>
+<span id="cb3-236"><a href="#cb3-236"></a><span class="co">#&gt; [1] "Getting info on: itfai-istatistikler Package 78/146"</span></span>
+<span id="cb3-237"><a href="#cb3-237"></a><span class="co">#&gt; [1] "Getting info on: itfai-istatistikler-yangin Package 79/146"</span></span>
+<span id="cb3-238"><a href="#cb3-238"></a><span class="co">#&gt; [1] "Getting info on: itfaiye-istasyonlari-konum-bilgileri Package 80/146"</span></span>
+<span id="cb3-239"><a href="#cb3-239"></a><span class="co">#&gt; [1] "Getting info on: izcilik-faaliyetinden-faydalanan-kisi-sayisi Package 81/146"</span></span>
+<span id="cb3-240"><a href="#cb3-240"></a><span class="co">#&gt; [1] "Getting info on: karayollari-bazinda-arac-ve-hat-sayisi Package 82/146"</span></span>
+<span id="cb3-241"><a href="#cb3-241"></a><span class="co">#&gt; [1] "Getting info on: karayollari-bazinda-maksimum-yolculuk-sayisi Package 83/146"</span></span>
+<span id="cb3-242"><a href="#cb3-242"></a><span class="co">#&gt; [1] "Getting info on: kentsel-donusum-projesi Package 84/146"</span></span>
+<span id="cb3-243"><a href="#cb3-243"></a><span class="co">#&gt; [1] "Getting info on: kisirlastirilan-hayvanlar Package 85/146"</span></span>
+<span id="cb3-244"><a href="#cb3-244"></a><span class="co">#&gt; [1] "Getting info on: kisla-mucadele-faaliyetleri-kapsaminda-buzlanmayi-onlemek-amaciyla-kullanilan-yontemler Package 86/146"</span></span>
+<span id="cb3-245"><a href="#cb3-245"></a><span class="co">#&gt; [1] "Getting info on: mevcut-bisiklet-yollari Package 87/146"</span></span>
+<span id="cb3-246"><a href="#cb3-246"></a><span class="co">#&gt; [1] "Getting info on: mezarlik-adres-bilgileri Package 88/146"</span></span>
+<span id="cb3-247"><a href="#cb3-247"></a><span class="co">#&gt; [1] "Getting info on: mikrociple-kayit-altina-alinan-hayvanlar Package 89/146"</span></span>
+<span id="cb3-248"><a href="#cb3-248"></a><span class="co">#&gt; [1] "Getting info on: muayene-edilen-hayvanlar Package 90/146"</span></span>
+<span id="cb3-249"><a href="#cb3-249"></a><span class="co">#&gt; [1] "Getting info on: muhtarlik-adres-bilgileri Package 91/146"</span></span>
+<span id="cb3-250"><a href="#cb3-250"></a><span class="co">#&gt; [1] "Getting info on: musahadeye-alinan-hayvanlar Package 92/146"</span></span>
+<span id="cb3-251"><a href="#cb3-251"></a><span class="co">#&gt; [1] "Getting info on: nufus-bilgileri Package 93/146"</span></span>
+<span id="cb3-252"><a href="#cb3-252"></a><span class="co">#&gt; [1] "Getting info on: operasyon-uygulanan-hayvanlar Package 94/146"</span></span>
+<span id="cb3-253"><a href="#cb3-253"></a><span class="co">#&gt; [1] "Getting info on: otomatik-meteorolojik-gozlem-istasyonu-verileri Package 95/146"</span></span>
+<span id="cb3-254"><a href="#cb3-254"></a><span class="co">#&gt; [1] "Getting info on: ozel-konulu-is-sagligi-ve-guvenligi-egitimi-ibb-personeli-sayisi Package 96/146"</span></span>
+<span id="cb3-255"><a href="#cb3-255"></a><span class="co">#&gt; [1] "Getting info on: paylasimli-bisiklet-yollari Package 97/146"</span></span>
+<span id="cb3-256"><a href="#cb3-256"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistem-gunluk-maksimum-yolculuk-sayilari Package 98/146"</span></span>
+<span id="cb3-257"><a href="#cb3-257"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistem-insaat-ilerleme-oranlari Package 99/146"</span></span>
+<span id="cb3-258"><a href="#cb3-258"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-cekmekoy-sultanbeyli-metro-hatti-bilgileri Package 100/146"</span></span>
+<span id="cb3-259"><a href="#cb3-259"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-dudullu-bostanci-metro-hatti-bilgileri Package 101/146"</span></span>
+<span id="cb3-260"><a href="#cb3-260"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemlere-ait-aktarma-bilgileri Package 102/146"</span></span>
+<span id="cb3-261"><a href="#cb3-261"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemlere-ait-hat-uzunluk-bilgileri Package 103/146"</span></span>
+<span id="cb3-262"><a href="#cb3-262"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemlere-ait-internet-siteleri Package 104/146"</span></span>
+<span id="cb3-263"><a href="#cb3-263"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemlere-ait-istasyon-bilgileri Package 105/146"</span></span>
+<span id="cb3-264"><a href="#cb3-264"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemlere-ait-tamamlanmis-santiye-bilgileri Package 106/146"</span></span>
+<span id="cb3-265"><a href="#cb3-265"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-eminonu-alibeykoy-tramvay-hatti-bilgileri Package 107/146"</span></span>
+<span id="cb3-266"><a href="#cb3-266"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-gunluk-aylik-yillik-hat-bazli-sefer-sayilari Package 108/146"</span></span>
+<span id="cb3-267"><a href="#cb3-267"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-gunluk-aylik-yillik-vagon-kilometre-bilgileri Package 109/146"</span></span>
+<span id="cb3-268"><a href="#cb3-268"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-hastane-yenidogan-metro-hatti-bilgileri Package 110/146"</span></span>
+<span id="cb3-269"><a href="#cb3-269"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-hat-bazli-sefer-sayilari Package 111/146"</span></span>
+<span id="cb3-270"><a href="#cb3-270"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-hat-bazli-yolculuk-sayilari Package 112/146"</span></span>
+<span id="cb3-271"><a href="#cb3-271"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-ikitelli-atakoy-metro-hatti-verisi Package 113/146"</span></span>
+<span id="cb3-272"><a href="#cb3-272"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-kabatas-mecidiykoy-mahmutbey-metro-hatti-bilgileri Package 114/146"</span></span>
+<span id="cb3-273"><a href="#cb3-273"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-kaynarca-tuzla-metro-hatti-bilgileri Package 115/146"</span></span>
+<span id="cb3-274"><a href="#cb3-274"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-kirazli-halkali-istasyonu-asansor-ve-yuruyen-merdiven-sayisi Package 116/146"</span></span>
+<span id="cb3-275"><a href="#cb3-275"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-kirazli-halkali-istasyonu-diger-hatlarla-baglanti-noktalari Package 117/146"</span></span>
+<span id="cb3-276"><a href="#cb3-276"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-kirazli-halkali-metro-hatti-ilce-istasyon-bilgileri Package 118/146"</span></span>
+<span id="cb3-277"><a href="#cb3-277"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-m7-kabatas-mecidiyekoy-mahmutbey-metro-hatti-otopark-bilgileri Package 119/146"</span></span>
+<span id="cb3-278"><a href="#cb3-278"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-maksimum-yolculuk-sayisi Package 120/146"</span></span>
+<span id="cb3-279"><a href="#cb3-279"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-pendik-kaynarca-hastane-metro-hatti-bilgileri Package 121/146"</span></span>
+<span id="cb3-280"><a href="#cb3-280"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-rumelihisarustu-asiyan-funikuler-hatti-ilce-istasyon-verisi Package 122/146"</span></span>
+<span id="cb3-281"><a href="#cb3-281"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-umraniye-atasehir-goztepe-metro-hatti-bilgileri Package 123/146"</span></span>
+<span id="cb3-282"><a href="#cb3-282"></a><span class="co">#&gt; [1] "Getting info on: rayli-sistemler-vagon-kilometre-bilgileri Package 124/146"</span></span>
+<span id="cb3-283"><a href="#cb3-283"></a><span class="co">#&gt; [1] "Getting info on: rehabilite-edilip-alindigi-ortama-birakilan-hayvanlar Package 125/146"</span></span>
+<span id="cb3-284"><a href="#cb3-284"></a><span class="co">#&gt; [1] "Getting info on: saatlik-trafik-yogunluk-veri-seti Package 126/146"</span></span>
+<span id="cb3-285"><a href="#cb3-285"></a><span class="co">#&gt; [1] "Getting info on: sahiplendirilen-hayvanlar Package 127/146"</span></span>
+<span id="cb3-286"><a href="#cb3-286"></a><span class="co">#&gt; [1] "Getting info on: sefer-gerceklesme-web-servisi Package 128/146"</span></span>
+<span id="cb3-287"><a href="#cb3-287"></a><span class="co">#&gt; [1] "Getting info on: sokak-hayvanlarina-ayrilan-butce Package 129/146"</span></span>
+<span id="cb3-288"><a href="#cb3-288"></a><span class="co">#&gt; [1] "Getting info on: sokak-hayvanlarina-verilen-mama-miktari Package 130/146"</span></span>
+<span id="cb3-289"><a href="#cb3-289"></a><span class="co">#&gt; [1] "Getting info on: spor-organizasyonlari-ve-sporcu-sayilari Package 131/146"</span></span>
+<span id="cb3-290"><a href="#cb3-290"></a><span class="co">#&gt; [1] "Getting info on: tedavi-edilen-hayvanlar Package 132/146"</span></span>
+<span id="cb3-291"><a href="#cb3-291"></a><span class="co">#&gt; [1] "Getting info on: toplu-tasima-bilet-fiyatlari Package 133/146"</span></span>
+<span id="cb3-292"><a href="#cb3-292"></a><span class="co">#&gt; [1] "Getting info on: toplu-ulasim-arac-dezenfeksiyon-sorgulama-sistemi Package 134/146"</span></span>
+<span id="cb3-293"><a href="#cb3-293"></a><span class="co">#&gt; [1] "Getting info on: trafik-indeks-degeri-web-servisi Package 135/146"</span></span>
+<span id="cb3-294"><a href="#cb3-294"></a><span class="co">#&gt; [1] "Getting info on: trafik-indeks-raporu Package 136/146"</span></span>
+<span id="cb3-295"><a href="#cb3-295"></a><span class="co">#&gt; [1] "Getting info on: trafik-yogunluk-haritasi Package 137/146"</span></span>
+<span id="cb3-296"><a href="#cb3-296"></a><span class="co">#&gt; [1] "Getting info on: tum-isbike-istasyonlari-web-servisi Package 138/146"</span></span>
+<span id="cb3-297"><a href="#cb3-297"></a><span class="co">#&gt; [1] "Getting info on: ucretsiz-ibbwifi-hizmeti-sunulan-lokasyonlar Package 139/146"</span></span>
+<span id="cb3-298"><a href="#cb3-298"></a><span class="co">#&gt; [1] "Getting info on: ulasim-yonetim-merkezi-uym-tarafindan-sisteme-girilen-trafik-duyurulari Package 140/146"</span></span>
+<span id="cb3-299"><a href="#cb3-299"></a><span class="co">#&gt; [1] "Getting info on: veteriner-rehabilitasyon-istatistikleri Package 141/146"</span></span>
+<span id="cb3-300"><a href="#cb3-300"></a><span class="co">#&gt; [1] "Getting info on: yatirim-turu-ve-uzunluk-bilgileri Package 142/146"</span></span>
+<span id="cb3-301"><a href="#cb3-301"></a><span class="co">#&gt; [1] "Getting info on: yil-bazli-atik-alinan-gemi-sayisi Package 143/146"</span></span>
+<span id="cb3-302"><a href="#cb3-302"></a><span class="co">#&gt; [1] "Getting info on: yillara-gore-atiktan-geri-kazanim-miktarlari Package 144/146"</span></span>
+<span id="cb3-303"><a href="#cb3-303"></a><span class="co">#&gt; [1] "Getting info on: yillara-gore-kentsel-atik-geri-kazanim-orani Package 145/146"</span></span>
+<span id="cb3-304"><a href="#cb3-304"></a><span class="co">#&gt; [1] "Getting info on: yolculuk-turu-bazinda-yolcu-sayisi Package 146/146"</span></span>
+<span id="cb3-305"><a href="#cb3-305"></a><span class="co">#&gt; # A tibble: 262 x 23</span></span>
+<span id="cb3-306"><a href="#cb3-306"></a><span class="co">#&gt;    resource_id package_id datastore_conta… datastore_active id      size</span></span>
+<span id="cb3-307"><a href="#cb3-307"></a><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;            &lt;chr&gt;  &lt;int&gt;</span></span>
+<span id="cb3-308"><a href="#cb3-308"></a><span class="co">#&gt;  1 311f8744-8… c9145e52-… True             TRUE             311f… 9.07e3</span></span>
+<span id="cb3-309"><a href="#cb3-309"></a><span class="co">#&gt;  2 &lt;NA&gt;        c9145e52-… False            FALSE            4e83… 3.45e5</span></span>
+<span id="cb3-310"><a href="#cb3-310"></a><span class="co">#&gt;  3 4b2fc348-5… f41d89f1-… True             TRUE             4b2f… 4.17e4</span></span>
+<span id="cb3-311"><a href="#cb3-311"></a><span class="co">#&gt;  4 1d9762dc-b… 0c3c3369-… True             TRUE             1d97… 1.90e4</span></span>
+<span id="cb3-312"><a href="#cb3-312"></a><span class="co">#&gt;  5 &lt;NA&gt;        0dd1d714-… False            TRUE             54bc… 4.30e5</span></span>
+<span id="cb3-313"><a href="#cb3-313"></a><span class="co">#&gt;  6 9bfc89aa-8… 824c942e-… True             TRUE             9bfc… 1.13e7</span></span>
+<span id="cb3-314"><a href="#cb3-314"></a><span class="co">#&gt;  7 2013bd85-e… 824c942e-… True             TRUE             2013… 1.65e7</span></span>
+<span id="cb3-315"><a href="#cb3-315"></a><span class="co">#&gt;  8 e5d17422-2… 824c942e-… True             TRUE             e5d1… 3.87e6</span></span>
+<span id="cb3-316"><a href="#cb3-316"></a><span class="co">#&gt;  9 &lt;NA&gt;        9f4de8dc-… False            FALSE            8fbe… 3.44e5</span></span>
+<span id="cb3-317"><a href="#cb3-317"></a><span class="co">#&gt; 10 &lt;NA&gt;        9f4de8dc-… False            FALSE            8ecf… 6.99e5</span></span>
+<span id="cb3-318"><a href="#cb3-318"></a><span class="co">#&gt; # … with 252 more rows, and 17 more variables: cache_last_updated &lt;lgl&gt;,</span></span>
+<span id="cb3-319"><a href="#cb3-319"></a><span class="co">#&gt; #   state &lt;chr&gt;, hash &lt;chr&gt;, description &lt;chr&gt;, format &lt;chr&gt;,</span></span>
+<span id="cb3-320"><a href="#cb3-320"></a><span class="co">#&gt; #   mimetype_inner &lt;lgl&gt;, url_type &lt;chr&gt;, mimetype &lt;chr&gt;, cache_url &lt;lgl&gt;,</span></span>
+<span id="cb3-321"><a href="#cb3-321"></a><span class="co">#&gt; #   name &lt;chr&gt;, created &lt;chr&gt;, url &lt;chr&gt;, last_modified &lt;chr&gt;, position &lt;int&gt;,</span></span>
+<span id="cb3-322"><a href="#cb3-322"></a><span class="co">#&gt; #   revision_id &lt;chr&gt;, resource_type &lt;lgl&gt;, package_name &lt;chr&gt;</span></span></code></pre></div>
 </div>
 <div id="information-about-a-specific-data-source" class="section level3">
 <h3 class="hasAnchor">
 <a href="#information-about-a-specific-data-source" class="anchor"></a>Information About a Specific Data Source</h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_detailed_info_on_data_source.html">get_detailed_info_on_data_source</a></span><span class="op">(</span>package_id <span class="op">=</span> <span class="st">"594ca91d-0c71-41da-b50a-c7cd30fab67a"</span>,
-                                       get_all_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 21</span>
-<span class="co">#&gt;   mimetype cache_url mimetype_inner hash  description created url   format</span>
-<span class="co">#&gt;   &lt;chr&gt;    &lt;lgl&gt;     &lt;lgl&gt;          &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; </span>
-<span class="co">#&gt; 1 applica… NA        NA             ""    İstanbul'd… 2020-0… http… XLSX  </span>
-<span class="co">#&gt; # … with 13 more variables: cache_last_updated &lt;lgl&gt;, state &lt;chr&gt;, package_id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   last_modified &lt;chr&gt;, revision_id &lt;chr&gt;, url_type &lt;chr&gt;, position &lt;int&gt;,</span>
-<span class="co">#&gt; #   datastore_contains_all_records_of_source_file &lt;chr&gt;, size &lt;int&gt;,</span>
-<span class="co">#&gt; #   datastore_active &lt;lgl&gt;, id &lt;chr&gt;, resource_type &lt;lgl&gt;, name &lt;chr&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>(df &lt;-<span class="st"> </span><span class="kw">get_detailed_info_on_data_source</span>(<span class="dt">package_id =</span> <span class="st">"594ca91d-0c71-41da-b50a-c7cd30fab67a"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2"></a>                                       <span class="dt">get_all_info =</span> <span class="ot">FALSE</span>))</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt;                                                            mimetype cache_url</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; 1 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet        NA</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;   mimetype_inner hash</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; 1             NA     </span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt;                                                        description</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; 1 İstanbul'da yolculuk türüne göre yıllık yolcu sayılarını içerir.</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt;                      created</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; 1 2020-01-10T08:26:02.513339</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt;                                                                                                                                                                url</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt; 1 https://data.ibb.gov.tr/dataset/594ca91d-0c71-41da-b50a-c7cd30fab67a/resource/c2c6cec1-ceb5-4fab-8d87-c5d900a99809/download/yolculuk-turu-baznda-yolcu-says.xlsx</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt;   format cache_last_updated  state                           package_id</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; 1   XLSX                 NA active 594ca91d-0c71-41da-b50a-c7cd30fab67a</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt;                last_modified                          revision_id url_type</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; 1 2020-02-12T08:21:30.736945 76233adf-752b-420b-8167-fcfe8c7b95b9   upload</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt;   position datastore_contains_all_records_of_source_file  size datastore_active</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; 1        0                                         False 13328             TRUE</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt;                                     id resource_type</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; 1 c2c6cec1-ceb5-4fab-8d87-c5d900a99809            NA</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt;                                      name</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt; 1 Yolculuk Türü Bazında Yolcu Sayısı.xlsx</span></span></code></pre></div>
 </div>
 <div id="get-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-data" class="anchor"></a>Get Data</h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_data_frame_ibb.html">get_data_frame_ibb</a></span><span class="op">(</span>resource_id <span class="op">=</span> <span class="st">"99d1edb6-a889-4e69-be7b-21a3f90101f1"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 46 x 5</span>
-<span class="co">#&gt;       id Konum         Lokasyon_Sayisi Yerli_Abone_Sayisi Yabanci_Abone_Sayisi</span>
-<span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;               </span>
-<span class="co">#&gt;  1     1 IETT Otobus   2594            613943             126248              </span>
-<span class="co">#&gt;  2     2 FATİH         77              111711             125044              </span>
-<span class="co">#&gt;  3     3 BEYOĞLU       35              85845              60064               </span>
-<span class="co">#&gt;  4     4 Diger         1479            425477             19108               </span>
-<span class="co">#&gt;  5     5 BEŞİKTAŞ      18              28119              8253                </span>
-<span class="co">#&gt;  6     6 IETT Metrobus 548             322380             7375                </span>
-<span class="co">#&gt;  7     7 KADIKÖY       24              49708              7241                </span>
-<span class="co">#&gt;  8     8 ÜSKÜDAR       28              37591              5883                </span>
-<span class="co">#&gt;  9     9 BAKIRKÖY      28              35130              5783                </span>
-<span class="co">#&gt; 10    10 EYÜPSULTAN    34              29755              4918                </span>
-<span class="co">#&gt; # … with 36 more rows</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>(df &lt;-<span class="st"> </span><span class="kw">get_data_frame_ibb</span>(<span class="dt">resource_id =</span> <span class="st">"99d1edb6-a889-4e69-be7b-21a3f90101f1"</span>))</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; Warning: `tbl_df()` is deprecated as of dplyr 1.0.0.</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; Please use `tibble::as_tibble()` instead.</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; # A tibble: 46 x 5</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;       id Konum         Lokasyon_Sayisi Yerli_Abone_Sayisi Yabanci_Abone_Sayisi</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;               </span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt;  1     1 IETT Otobus   2594            613943             126248              </span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt;  2     2 FATİH         77              111711             125044              </span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt;  3     3 BEYOĞLU       35              85845              60064               </span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt;  4     4 Diger         1479            425477             19108               </span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt;  5     5 BEŞİKTAŞ      18              28119              8253                </span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt;  6     6 IETT Metrobus 548             322380             7375                </span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt;  7     7 KADIKÖY       24              49708              7241                </span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt;  8     8 ÜSKÜDAR       28              37591              5883                </span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt;  9     9 BAKIRKÖY      28              35130              5783                </span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 10    10 EYÜPSULTAN    34              29755              4918                </span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; # … with 36 more rows</span></span></code></pre></div>
 </div>
 <div id="pre-defined-functions-for-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#pre-defined-functions-for-data" class="anchor"></a>Pre-defined Functions for Data</h3>
 <p>There are some pre-defined functions for data download. For a full list please see the package help files.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ibb_wifi_daily_data_usage.html">get_ibb_wifi_daily_data_usage</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 100 x 11</span>
-<span class="co">#&gt;       id Gun   Lokasyon_Sayisi Abone_Sayisi Oturum_Sayisi Cihaz_Sayisi Data_Download_GB</span>
-<span class="co">#&gt;    &lt;int&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;           </span>
-<span class="co">#&gt;  1     1 2019… 2895            58983        95609         59235        6807.38         </span>
-<span class="co">#&gt;  2     2 2019… 2328            50629        81088         51115        5944.96         </span>
-<span class="co">#&gt;  3     3 2019… 1919            44837        72068         45462        5482.67         </span>
-<span class="co">#&gt;  4     4 2019… 2903            61729        100191        62006        6722.92         </span>
-<span class="co">#&gt;  5     5 2019… 2905            62073        101260        62399        6712.55         </span>
-<span class="co">#&gt;  6     6 2019… 2902            57395        91329         57557        6666.37         </span>
-<span class="co">#&gt;  7     7 2019… 3137            64287        105519        64594        7133.57         </span>
-<span class="co">#&gt;  8     8 2019… 3133            64160        104175        64407        7042.73         </span>
-<span class="co">#&gt;  9     9 2019… 2485            54146        87945         54766        6475.27         </span>
-<span class="co">#&gt; 10    10 2019… 2009            47366        76901         47974        5909.62         </span>
-<span class="co">#&gt; # … with 90 more rows, and 4 more variables: Data_Upload_GB &lt;chr&gt;, Data_Yerli_GB &lt;chr&gt;,</span>
-<span class="co">#&gt; #   Data_Yabanci_GB &lt;chr&gt;, Sure_Saat &lt;chr&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>(df &lt;-<span class="st"> </span><span class="kw">get_ibb_wifi_daily_data_usage</span>())</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt; # A tibble: 100 x 11</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt;       id Gun   Lokasyon_Sayisi Abone_Sayisi Oturum_Sayisi Cihaz_Sayisi</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;       </span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt;  1     1 2019… 2895            58983        95609         59235       </span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;  2     2 2019… 2328            50629        81088         51115       </span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;  3     3 2019… 1919            44837        72068         45462       </span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;  4     4 2019… 2903            61729        100191        62006       </span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;  5     5 2019… 2905            62073        101260        62399       </span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;  6     6 2019… 2902            57395        91329         57557       </span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  7     7 2019… 3137            64287        105519        64594       </span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  8     8 2019… 3133            64160        104175        64407       </span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  9     9 2019… 2485            54146        87945         54766       </span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; 10    10 2019… 2009            47366        76901         47974       </span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; # … with 90 more rows, and 5 more variables: Data_Download_GB &lt;chr&gt;,</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; #   Data_Upload_GB &lt;chr&gt;, Data_Yerli_GB &lt;chr&gt;, Data_Yabanci_GB &lt;chr&gt;,</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; #   Sure_Saat &lt;chr&gt;</span></span></code></pre></div>
 </div>
 </div>
 <div id="code-of-conduct" class="section level2">
@@ -245,7 +530,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://CRAN.R-project.org/package=ibb"><img src="https://www.r-pkg.org/badges/version/ibb" alt="CRAN status"></a></li>
-<li><a href="https://github.com/emraher/ibb/actions"><img src="https://github.com/emraher/ibb/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://github.com/berkorbay/ibb/actions"><img src="https://github.com/berkorbay/ibb/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 </ul>
 </div>
 </div>
