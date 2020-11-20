@@ -4,8 +4,9 @@
 \alias{get_ibb_wifi_daily_new_subscribers}
 \title{ibbWiFi Daily New Subscribers}
 \usage{
-get_ibb_wifi_daily_new_subscribers(params = list(limit =
-  Sys.getenv("IBB_QUERY_LIMIT")))
+get_ibb_wifi_daily_new_subscribers(
+  params = list(limit = Sys.getenv("IBB_QUERY_LIMIT"))
+)
 }
 \arguments{
 \item{params}{List of parameters}

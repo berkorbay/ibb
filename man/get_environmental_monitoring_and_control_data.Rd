@@ -4,8 +4,9 @@
 \alias{get_environmental_monitoring_and_control_data}
 \title{Environmental Monitoring and Control Data Based on Location in 2020}
 \usage{
-get_environmental_monitoring_and_control_data(params = list(limit =
-  Sys.getenv("IBB_QUERY_LIMIT")))
+get_environmental_monitoring_and_control_data(
+  params = list(limit = Sys.getenv("IBB_QUERY_LIMIT"))
+)
 }
 \arguments{
 \item{params}{List of parameters}
@@ -15,6 +16,6 @@ It contains environmental monitoring and control data with 13 parameters, measur
 }
 \examples{
 \dontrun{
-get_environmental_monitoring_and_control_data(params=list(limit=5))
+get_environmental_monitoring_and_control_data(params = list(limit = 5))
 }
 }

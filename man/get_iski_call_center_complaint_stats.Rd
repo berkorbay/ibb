@@ -2,10 +2,11 @@
 % Please edit documentation in R/data-calls.R
 \name{get_iski_call_center_complaint_stats}
 \alias{get_iski_call_center_complaint_stats}
-\title{WATER OUTAGE COMPLAINTS AND RESPONSE NUMBERS BY DISTRICT IN 2019}
+\title{Water Outage Complaints and Response Numbers by District in 2019}
 \usage{
-get_iski_call_center_complaint_stats(params = list(limit =
-  Sys.getenv("IBB_QUERY_LIMIT")))
+get_iski_call_center_complaint_stats(
+  params = list(limit = Sys.getenv("IBB_QUERY_LIMIT"))
+)
 }
 \arguments{
 \item{params}{List of parameters}
@@ -15,6 +16,6 @@ Contains information on the number of complaints and responses to water outages 
 }
 \examples{
 \dontrun{
-get_iski_call_center_complaint_stats(params=list(limit=5))
+get_iski_call_center_complaint_stats(params = list(limit = 5))
 }
 }

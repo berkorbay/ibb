@@ -4,7 +4,9 @@
 \name{ibb_data_sources}
 \alias{ibb_data_sources}
 \title{List of Data Sources}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 205 rows and 23 columns.}
+\format{
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 205 rows and 23 columns.
+}
 \usage{
 ibb_data_sources
 }

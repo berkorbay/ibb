@@ -4,8 +4,9 @@
 \alias{get_ibb_wifi_new_subscribers_by_location}
 \title{ibbWiFi New Subscribers by Location}
 \usage{
-get_ibb_wifi_new_subscribers_by_location(params = list(limit =
-  Sys.getenv("IBB_QUERY_LIMIT")))
+get_ibb_wifi_new_subscribers_by_location(
+  params = list(limit = Sys.getenv("IBB_QUERY_LIMIT"))
+)
 }
 \arguments{
 \item{params}{List of parameters}
