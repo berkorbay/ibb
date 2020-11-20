@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/ibb)](https://CRAN.R-project.org/package=ibb)
-[![R build status](https://github.com/emraher/ibb/workflows/R-CMD-check/badge.svg)](https://github.com/emraher/ibb/actions)
+[![R build status](https://github.com/berkorbay/ibb/workflows/R-CMD-check/badge.svg)](https://github.com/berkorbay/ibb/actions)
 <!-- badges: end -->
 
 The goal of ibb is to access [Istanbul Metropolitan Municipality's Open Data Portal](https://data.ibb.gov.tr/en/).
