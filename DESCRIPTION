@@ -4,8 +4,7 @@ Version: 0.0.2
 Authors@R: 
     c(person(given = "Berk",
              family = "Orbay",
-             role = c("aut", "cre"),
-             email = "berk.orbay@algopoly.com"),
+             role = c("aut", "orbayb@mef.edu.tr"),
       person(given = "Emrah",
              family = "Er",
              role = "ctb",
