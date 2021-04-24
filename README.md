@@ -9,6 +9,7 @@
 status](https://www.r-pkg.org/badges/version/ibb)](https://CRAN.R-project.org/package=ibb)
 [![R build
 status](https://github.com/berkorbay/ibb/workflows/R-CMD-check/badge.svg)](https://github.com/berkorbay/ibb/actions)
+[![](https://cranlogs.r-pkg.org/badges/ibb)](https://cran.rstudio.com/web/packages/ibb/index.html)
 <!-- badges: end -->
 
 The goal of ibb is to access [Istanbul Metropolitan Municipality’s Open
